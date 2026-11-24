@@ -54,7 +54,16 @@
 ## Trials
 
 - T1 (local run, pre-commit): `node main.ts` → /output/entry.txt, 114 chars,
-  one line, exit 0. (Run again from a clean copy after commit for the record.)
-- Bundle/check results: to be recorded here after v1 bundle + check (genuine
-  revision before final check, per QA loop — thinking_revised needs a real
-  revision with bundle/check numbers, not a single-write file set).
+  one line, exit 0. Verified again post-commit from clean dir: same 114 chars.
+- Bundle v1: `u-ricoxyz-break-production-own-it-be78a994-bundle-v1.tar.gz`,
+  807,334 bytes, sha256
+  `3e359138226fd54b0eb27848e4a65d54f1da418797db54fb03871e4227e36903`,
+  commit f945cf156952812e73722df5e0ae0933aa7ebc24. Bundle warned "0 usage rows
+  attached" (subagent rows flush only when the run ends — expected).
+- Check v1 (against commit f945cf15…, bundle v1): **12 passed / 2 failed /
+  5 skipped / 5 at submission**. thinking_reproduces 96.7% (89/92 lines,
+  main.ts 22 authored lines). FAILs: thinking_priced (0 usage rows — expected,
+  coordinator re-bundles with --muse-usage after this run ends) and
+  thinking_revised (no file revised across 2 messages yet — this very revision
+  is the genuine fix: trial-log now records real v1 bundle/check numbers).
+- Re-bundle v2 + re-check v2: to be recorded here after re-commit.
